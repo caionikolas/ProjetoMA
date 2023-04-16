@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tabela dinâmica</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Código da Transação</th>
+				<th>Data</th>
+				<th>Quantidade de ações</th>
+				<th>Valor da Ação (Dólar)</th>
+				<th>Função</th>
+				<th>Taxa de Corretagem</th>
+				<th>Valor Operacional</th>
+				<th>Impostor</th>
+				<th>Valor Final</th>
+			</tr>
+		</thead>
+	</table>
+
+	<form>
+		<label for="qnt_acao">Quantidade de ações:</label>
+		<input type="text" id="qnt"><br/>
+		<label for="funcao">Função:</label>
+		<input type="radio" value="Compra" name="funcao" checked="checked">
+		<label for="funcao">Compra</label>
+		<input type="radio" value="Venda" name="funcao" >
+		<label for="funcao">Venda</label>
+        
+		<button type="button" onclick="adicionarLinha()">Submeter</button>
+	</form>
+
+	<script>
+		function adicionarLinha() {
+            var numero_aleatorio = Math.floor(Math.random() * 100000); // Gera um número aleatório de 5 dígitos
+            var codigo_unico = "COD-" + numero_aleatorio.toString(); // Cria o código único com o número aleatório
+			var qnt = document.getElementById("qnt").value;
+            var funcao = document.querySelector('input[name="funcao"]:checked').value;
+            var cota = 49.02
+			const dataAtual = new Date();
+            const dia = dataAtual.getDate().toString().padStart(2, '0');
+            const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0'); // Observe que os meses começam em 0
+            const ano = dataAtual.getFullYear();
+            const dataFormatada = `${dia}/${mes}/${ano}`;
+
+
+
+
+			// Seleciona a tabela e adiciona uma nova linha
+			var tabela = document.querySelector("table");
+			var linha = tabela.insertRow();
+
+			// Adiciona as células na nova linha
+			var celulaCod = linha.insertCell();
+			var celuladate = linha.insertCell();
+			var celulaqnt = linha.insertCell();
+			var celulacota = linha.insertCell();
+			var celulafuncao = linha.insertCell();
+
+			// Define o valor das células
+			celulaCod.innerHTML = codigo_unico;
+			celuladate.innerHTML = dataFormatada;
+			celulaqnt.innerHTML = qnt;
+			celulacota.innerHTML = cota;
+			celulafuncao.innerHTML = funcao;
+		}   
+	</script>
+    
+    
+</body>
+</html>
