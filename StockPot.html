@@ -14,7 +14,7 @@
 				<th>Quantidade de ações</th>
 				<th>Valor da Ação (Dólar)</th>
 				<th>Função</th>
-				<th>Taxa de Corretagem</th>
+				<th>Taxa de Corretagem (%)</th>
 				<th>Valor Operacional</th>
 				<th>Impostor</th>
 				<th>Valor Final</th>
@@ -31,24 +31,37 @@
 		<input type="radio" value="Venda" name="funcao" >
 		<label for="funcao">Venda</label>
         
-		<button type="button" onclick="adicionarLinha()">Submeter</button>
+		<button type="button" value="submit" onclick="adicionarLinha()">Submeter</button>
 	</form>
 
 	<script>
 		function adicionarLinha() {
+			var qnt = document.getElementById("qnt").value;
+			if (qnt.trim() == "") {
+				alert("Por favor, preencha o campo.");
+				return false;
+			} else if (isNaN(qnt)) {
+				alert("Por favor, digite apenas números.");
+				return false;
+			}
             var numero_aleatorio = Math.floor(Math.random() * 100000); // Gera um número aleatório de 5 dígitos
             var codigo_unico = "COD-" + numero_aleatorio.toString(); // Cria o código único com o número aleatório
-			var qnt = document.getElementById("qnt").value;
             var funcao = document.querySelector('input[name="funcao"]:checked').value;
-            var cota = 49.02
+            var valor_acao = 49.02;
+            var tx_corretagem = 0.027;
+			var valor_op = qnt * valor_acao;
+			var imposto = valor_op * tx_corretagem;
+			if (funcao == 'Compra') {
+				var valor_final = (valor_op + imposto).toFixed(2);
+			} else if (funcao == "Venda") {
+				var valor_final = (valor_op - imposto).toFixed(2);
+			}
+			
 			const dataAtual = new Date();
             const dia = dataAtual.getDate().toString().padStart(2, '0');
             const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0'); // Observe que os meses começam em 0
             const ano = dataAtual.getFullYear();
             const dataFormatada = `${dia}/${mes}/${ano}`;
-
-
-
 
 			// Seleciona a tabela e adiciona uma nova linha
 			var tabela = document.querySelector("table");
@@ -58,15 +71,23 @@
 			var celulaCod = linha.insertCell();
 			var celuladate = linha.insertCell();
 			var celulaqnt = linha.insertCell();
-			var celulacota = linha.insertCell();
+			var celulavalor_acao = linha.insertCell();
 			var celulafuncao = linha.insertCell();
+			var celulatx_corretagem = linha.insertCell();
+			var celulavalor_op = linha.insertCell();
+			var celulaimposto = linha.insertCell();
+			var celulavalor_final = linha.insertCell();
 
 			// Define o valor das células
 			celulaCod.innerHTML = codigo_unico;
 			celuladate.innerHTML = dataFormatada;
 			celulaqnt.innerHTML = qnt;
-			celulacota.innerHTML = cota;
 			celulafuncao.innerHTML = funcao;
+			celulavalor_acao.innerHTML = valor_acao;
+			celulatx_corretagem.innerHTML = tx_corretagem;
+			celulavalor_op.innerHTML = valor_op.toFixed(2);
+			celulaimposto.innerHTML = imposto.toFixed(2);
+			celulavalor_final.innerHTML = valor_final;
 		}   
 	</script>
     
