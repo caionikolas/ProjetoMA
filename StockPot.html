@@ -39,6 +39,8 @@
 
 	<script>
 		var valor_acao = 49.02
+		setInterval(attValorAcao, 10000);
+
 
 		function adicionarLinha() {
 			var qnt = document.getElementById("qnt").value;
@@ -114,6 +116,8 @@
 			spanValor.textContent = "$" + valor_acao.toFixed(2);
 		}
 		document.getElementById("valor_acao").innerHTML = '$'+valor_acao;
+		setInterval(minhaFuncao, 1000);
+
 
 	</script>
     
