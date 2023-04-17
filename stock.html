@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Stock</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="img/logo.png" alt="logo"></div>
+        <h1>Controle de investimentos</h1>
+    </header>
+    <hr>
+    <main>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código da Transação</th>
+                        <th>Data</th>
+                        <th>Quantidade de ações</th>
+                        <th>Valor da Ação ($)</th>
+                        <th>Função</th>
+                        <th>Taxa de Corretagem (%)</th>
+                        <th>Valor Operacional</th>
+                        <th>Impostor</th>
+                        <th>Valor Final</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="form">
+            <div class="container">
+                <form>
+                    <label for="qnt_acao">Quantidade de ações:</label>
+                    <input type="text" id="qnt"><br/>
+                    <label for="funcao">Função:</label>
+                    <input type="radio" value="Compra" name="funcao" checked="checked">
+                    <label for="funcao">Compra</label>
+                    <input type="radio" value="Venda" name="funcao" >
+                    <label for="funcao">Venda</label>
+                    
+                    <button type="button" value="submit" onclick="adicionarLinha()">Submeter</button>
+                </form>
+            
+                <p>Valor atual: <span id="valor_acao"></span></p>
+                <button type="button" value="att" onclick="attValorAcao()">Gerar valor aleatório</button>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="stock.js"></script>
+</body>
+</html>
