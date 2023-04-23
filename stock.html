@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Stock</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 <body>
     <header>
@@ -25,29 +26,27 @@
                         <th>Função</th>
                         <th>Taxa de Corretagem (%)</th>
                         <th>Valor Operacional</th>
-                        <th>Impostor</th>
+                        <th>Imposto</th>
                         <th>Valor Final</th>
                     </tr>
+					<tr>
+						<td><input type="text" id="cod"></td>
+						<td><input type="date" id="data"></td>
+						<td><input type="number" id="qnt"></td>
+						<td><input type="number" id="ativo"></td>
+						<td><input type="radio" value="Compra" name="funcao" checked="checked">
+							<label for="funcao">Compra</label>
+							<input type="radio" value="Venda" name="funcao">
+							<label for="funcao">Venda</label>
+						</td>
+						<td><input type="number" id="tx"></td>
+						<td></td>
+						<td></td>
+						<td><button type="button" value="submit" onclick="adicionarLinha()">Submeter</button></td>
+					</tr>
+					  
                 </thead>
             </table>
-        </div>
-        <div class="form">
-            <div class="container">
-                <form>
-                    <label for="qnt_acao">Quantidade de ações:</label>
-                    <input type="text" id="qnt"><br/>
-                    <label for="funcao">Função:</label>
-                    <input type="radio" value="Compra" name="funcao" checked="checked">
-                    <label for="funcao">Compra</label>
-                    <input type="radio" value="Venda" name="funcao" >
-                    <label for="funcao">Venda</label>
-                    
-                    <button type="button" value="submit" onclick="adicionarLinha()">Submeter</button>
-                </form>
-            
-                <p>Valor atual: <span id="valor_acao"></span></p>
-                <button type="button" value="att" onclick="attValorAcao()">Gerar valor aleatório</button>
-            </div>
         </div>
     </main>
     <footer></footer>
